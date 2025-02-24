@@ -8,9 +8,10 @@ class ConnectFour
     @current = @player1
     @board = Board.new
   end
-  def play(row)
+  def play(col)
     current_player = @current
-    @board.board[row] << current_player
+    row = @board.board[col].rindex(' ')
+    @board.board[col][row] = current_player
     change_player
   end
   def change_player
@@ -25,4 +26,10 @@ c = ConnectFour.new
 c.play(5)
 c.play(4)
 c.play(3)
+c.play(5)
+c.play(5)
+c.play(5)
+c.play(5)
+c.play(5)
+
 p c.board.board
