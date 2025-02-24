@@ -30,23 +30,18 @@ class ConnectFour
     end
   end
 
+  def play_game
+    loop do
+    display_board    
+    puts "Where you want to play your token #{@current}?"
+    col = gets.chomp.to_i
+    play(col)
+    end
+  end
+
 
 end
 
 c = ConnectFour.new
 
-# p c.board
-c.play(5)
-c.play(4)
-c.play(3)
-c.play(5)
-c.play(5)
-c.play(5)
-c.play(5)
-c.play(5)
-
-# p c.board.board
-puts c.display_board
-
-c.play(4)
-c.display_board
+c.play_game
