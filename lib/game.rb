@@ -31,6 +31,14 @@ class ConnectFour
       puts row
     end
   end
+  def horizontal_winner?
+   (0..6).each do |row|
+      (0..2).each do |col|
+        p col
+          return true if [@board.board[col][row], @board.board[col+1][row], @board.board[col+2][row], @board.board[col+3][row]].uniq.size == 1 && ![@board.board[col][row], @board.board[col+1][row], @board.board[col+2][row], @board.board[col+3][row]].include?(' ')
+      end 
+    end
+  end
   def winner?
     @board.board.each do |col|
       col.each_cons(4) do |four|
@@ -50,7 +58,7 @@ class ConnectFour
       col = gets.chomp.to_i
     end
     play(col)
-    if winner? == true
+    if winner? == true || horizontal_winner? == true
       change_player
       puts "Congratulations #{@current}, you won the game!"
       display_board
