@@ -47,6 +47,15 @@ class ConnectFour
       end
     end
   end
+  def diagonal_winner?
+    (0..2).each do |col|
+      (0..6).each do |row|
+        p [@board.board[col][row+3], @board.board[col+1][row+2], @board.board[col+2][row+1], @board.board[col+3][row]]
+        return true if [@board.board[col][row], @board.board[col+1][row+1], @board.board[col+2][row+2], @board.board[col+3][row+3]].uniq.size == 1 && ![@board.board[col][row], @board.board[col+1][row+1], @board.board[col+2][row+2], @board.board[col+3][row+3]].include?(' ')
+        return true if [@board.board[col][row+3], @board.board[col+1][row+2], @board.board[col+2][row+1], @board.board[col+3][row]].uniq.size == 1 && ![@board.board[col][row+3], @board.board[col+1][row+2], @board.board[col+2][row+1], @board.board[col+3][row]].include?(' ')
+      end
+    end
+  end
   def play_game
     loop do
     display_board 
@@ -58,7 +67,7 @@ class ConnectFour
       col = gets.chomp.to_i
     end
     play(col)
-    if winner? == true || horizontal_winner? == true
+    if winner? == true || horizontal_winner? == true || diagonal_winner? == true
       change_player
       puts "Congratulations #{@current}, you won the game!"
       display_board
@@ -70,6 +79,7 @@ class ConnectFour
       break
     end
     end
+
   end
 
 
